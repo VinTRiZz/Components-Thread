@@ -1,7 +1,7 @@
 #include "mainapp.hpp"
 #include "module.hpp"
 
-#include <Logger/Logger.h>
+#include <Components/Logger/Logger.h>
 
 namespace Thread
 {
