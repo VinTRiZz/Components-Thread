@@ -62,6 +62,7 @@ target_link_libraries(${LIBRARY_NAME} PRIVATE ${TARGET_LINKED_LIBS} )
 
 # Required modules
 LINK_COMPONENT(${LIBRARY_NAME} ${CMAKE_CURRENT_SOURCE_DIR}/depends Logger)
+LINK_COMPONENT(${LIBRARY_NAME} ${CMAKE_CURRENT_SOURCE_DIR}/depends ExtraClasses)
 
 # Files
 file(GLOB_RECURSE HEADERS "src/*.hpp" "src/*.h")
