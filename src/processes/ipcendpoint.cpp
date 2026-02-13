@@ -58,7 +58,7 @@ void Endpoint::connect(const std::string &exchangeAddress, unsigned exchangeBuff
 
     d->exchangeThread = std::thread([this, exchangeBufferSize]() -> void {
         try {
-            LOG_INFO("IPC::Endpoint Started");
+            COMPLOG_INFO("IPC::Endpoint Started");
             d->exchangeObject = std::make_unique<bip::shared_memory_object>(
                 bip::open_or_create,
                 d->address.c_str(),
@@ -86,12 +86,12 @@ void Endpoint::connect(const std::string &exchangeAddress, unsigned exchangeBuff
 
             }
 
-            LOG_INFO("IPC::Endpoint Exited normally");
+            COMPLOG_INFO("IPC::Endpoint Exited normally");
         }
         catch (const bip::interprocess_exception& e) {
             d->lastError = "Send exception: ";
             d->lastError += e.what();
-            LOG_ERROR("IPC::Endpoint Exception:", e.what());
+            COMPLOG_ERROR("IPC::Endpoint Exception:", e.what());
             d->isConnected = false;
         }
     });
@@ -125,7 +125,7 @@ void Endpoint::disconnect()
     d->exchangeRegion.reset();
     d->exchangeWriteMutex.reset();
     d->exchangeCv.reset();
-    LOG_INFO("IPC::Endpoint Disconnected");
+    COMPLOG_INFO("IPC::Endpoint Disconnected");
 }
 
 bool Endpoint::send(const std::string &messageStr)
@@ -141,7 +141,7 @@ bool Endpoint::send(const std::string &messageStr)
             return false;
         }
     }
-    LOG_DEBUG("IPC::Endpoint Message sent:", messageStr);
+    COMPLOG_DEBUG("IPC::Endpoint Message sent:", messageStr);
     return true;
 }
 
@@ -173,7 +173,7 @@ bool Endpoint::sendPart(const std::string_view &str)
     catch (const bip::interprocess_exception& e) {
         d->lastError = "Send exception: ";
         d->lastError += e.what();
-        LOG_ERROR("Part send exception:", e.what());
+        COMPLOG_ERROR("Part send exception:", e.what());
         return false;
     }
     return true;

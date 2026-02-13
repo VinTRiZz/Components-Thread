@@ -10,7 +10,7 @@ MainApp::MainApp(int argc, char *argv[])
 {
     if (argc > 0)
     {
-        LOG_INFO("Application started");
+        COMPLOG_INFO("Application started");
         for (int i = 0; i < argc; i++)
             m_argsVect.push_back(argv[i]);
     }
@@ -64,7 +64,7 @@ bool MainApp::init()
         if (initProcess.valid())
         {
             initProcess.get();
-            LOG_DEBUG("Init awaiting");
+            COMPLOG_DEBUG("Init awaiting");
         }
     }
 
@@ -73,11 +73,11 @@ bool MainApp::init()
     {
         if (module->status() == ModuleStatus::MODULE_STATUS_INITED)
         {
-            LOG_OK("PModule inited: " + module->name() + " (" + std::to_string(currentModuleNo++) + " / " + std::to_string(m_moduleVect.size()) + ")");
+            COMPLOG_OK("PModule inited: " + module->name() + " (" + std::to_string(currentModuleNo++) + " / " + std::to_string(m_moduleVect.size()) + ")");
         }
         else
         {
-            LOG_ERROR("PModule: " + module->name() + " init error (" + std::to_string(currentModuleNo++) + " / " + std::to_string(m_moduleVect.size()) + ")");
+            COMPLOG_ERROR("PModule: " + module->name() + " init error (" + std::to_string(currentModuleNo++) + " / " + std::to_string(m_moduleVect.size()) + ")");
         }
     }
 
@@ -98,13 +98,13 @@ bool MainApp::init()
         }
     }
 
-    LOG_INFO("Initialisation complete");
+    COMPLOG_INFO("Initialisation complete");
     return (initedModuleCount == m_moduleVect.size());
 }
 
 int MainApp::exec()
 {
-    LOG_INFO("Starting modules");
+    COMPLOG_INFO("Starting modules");
 
     // Start modules
     for (auto module : m_moduleVect)
@@ -112,11 +112,11 @@ int MainApp::exec()
         if (module->status() == ModuleStatus::MODULE_STATUS_INITED)
         {
             module->start();
-            LOG_OK(std::string("PModule ") + module->name() + " started");
+            COMPLOG_OK(std::string("PModule ") + module->name() + " started");
         }
         else
         {
-            LOG_ERROR(std::string("PModule ") + module->name() + " not started");
+            COMPLOG_ERROR(std::string("PModule ") + module->name() + " not started");
         }
     }
 
@@ -135,7 +135,7 @@ void MainApp::exit()
             module->stop();
     }
 
-    LOG_INFO("App exit normal");
+    COMPLOG_INFO("App exit normal");
 }
 
 }

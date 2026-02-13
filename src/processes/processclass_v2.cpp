@@ -53,7 +53,7 @@ void ProcessClass_v2::setArgs(const StringList &argList)
 bool ProcessClass_v2::exec()
 {
     if (m_prog.empty()) {
-        LOG_ERROR("Error starting program: [Empty program]");
+        COMPLOG_ERROR("Error starting program: [Empty program]");
         return false;
     }
 
@@ -69,7 +69,7 @@ bool ProcessClass_v2::exec()
                      bp::on_exit([this](int exCode, const std::error_code& ec){
 
             if (ec) {
-                LOG_ERROR("Program execution error:", ec.message());
+                COMPLOG_ERROR("Program execution error:", ec.message());
                 return;
             }
 
@@ -106,7 +106,7 @@ bool ProcessClass_v2::exec()
         d->c.wait();
 
     } catch (boost::process::process_error& ex) {
-        LOG_ERROR("Error starting program: [", m_prog, "] what: [", ex.what(), "]");
+        COMPLOG_ERROR("Error starting program: [", m_prog, "] what: [", ex.what(), "]");
         return false;
     }
 
@@ -125,7 +125,7 @@ bool ProcessClass_v2::poll(int64_t timeoutMs)
         res = d->c.wait_for(std::chrono::milliseconds(timeoutMs));
         if (!res) {
             d->c.terminate();
-            LOG_WARNING("Process", m_prog, "terminated. Reason: [TIMEOUT]");
+            COMPLOG_WARNING("Process", m_prog, "terminated. Reason: [TIMEOUT]");
         }
 
     } else {
