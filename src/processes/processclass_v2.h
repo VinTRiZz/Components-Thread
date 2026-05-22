@@ -3,7 +3,7 @@
 #include <boost/asio.hpp>
 #include <boost/process.hpp>
 
-#include <Components/ExtraClasses/StringList.h>
+#include <Components/ExtraClasses/Containers/StringList.h>
 
 namespace Thread
 {

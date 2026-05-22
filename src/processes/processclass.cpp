@@ -1,6 +1,6 @@
 #include "processclass.h"
 
-#include  <Components/ExtraClasses/StringList.h>
+#include  <Components/ExtraClasses/Containers/StringList.h>
 
 // PID getting
 #include <fcntl.h>

@@ -3,7 +3,7 @@
 #include <optional>
 #include <string>
 
-#include <Components/ExtraClasses/StringList.h>
+#include <Components/ExtraClasses/Containers/StringList.h>
 
 namespace Thread
 {
