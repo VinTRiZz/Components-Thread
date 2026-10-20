@@ -16,5 +16,5 @@ else()
     )
 endif()
 
-COMPONENTS_LINK_COMPONENT(Thread Logger)
-COMPONENTS_LINK_COMPONENT(Thread ExtraClasses)
+COMPONENTS_LINK_COMPONENT(Components-Thread Logger)
+COMPONENTS_LINK_COMPONENT(Components-Thread ExtraClasses)
